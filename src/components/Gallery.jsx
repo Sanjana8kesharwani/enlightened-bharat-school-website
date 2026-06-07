@@ -77,7 +77,8 @@ import { Autoplay, Pagination } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/pagination"
 
-import { supabase } from "../supabase"
+import { db } from "../firebase"
+import { collection, getDocs, query, orderBy } from "firebase/firestore"
 
 function Gallery() {
 
@@ -89,21 +90,16 @@ function Gallery() {
 
   const fetchGallery = async () => {
 
-    const { data, error } = await supabase
-      .from("gallery")
-      .select("*")
-      .order("created_at", { ascending: false })
-
-    if (error) {
-
-      console.log(error)
-
-    }
-
-    else {
-
-      setImages(data)
-
+    try {
+      const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
+      const querySnapshot = await getDocs(q);
+      const fetchedImages = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setImages(fetchedImages);
+    } catch (error) {
+      console.log(error);
     }
 
   }

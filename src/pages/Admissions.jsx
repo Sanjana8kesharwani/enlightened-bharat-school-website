@@ -1,5 +1,9 @@
-import { supabase } from "../supabase"
+import { db } from "../firebase"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { useState } from "react"
+
+import { toast, ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 function Admissions() {
 
@@ -18,33 +22,18 @@ const handleSubmit = async (e) => {
 
   e.preventDefault()
 
-  const { data, error } = await supabase
-  .from("admissions")
-  .insert([
+  try {
+    await addDoc(collection(db, "admissions"), {
+      student_name: formData.studentName,
+      father_name: formData.fatherName,
+      class_name: formData.className,
+      mobile: formData.mobile,
+      email: formData.email,
+      address: formData.address,
+      createdAt: serverTimestamp()
+    })
 
-      {
-        student_name: formData.studentName,
-        father_name: formData.fatherName,
-        class_name: formData.className,
-        mobile: formData.mobile,
-        email: formData.email,
-        address: formData.address
-      }
-
-    ])
-
-  if (error) {
-
-    alert("Something went wrong 😢")
-
-    console.log(error.message)
-alert(error.message)
-
-  }
-
-  else {
-
-    alert("Application Submitted Successfully 🎉")
+    toast.success("Application Submitted Successfully 🎉")
 
     setFormData({
 
@@ -57,6 +46,12 @@ alert(error.message)
 
     })
 
+  } catch (error) {
+
+    toast.error("Something went wrong 😢")
+
+    console.log(error.message)
+
   }
 
 }
@@ -64,6 +59,20 @@ alert(error.message)
   return (
 
     <section className="min-h-screen bg-gradient-to-b from-blue-950 to-black px-6 py-32">
+
+      {/* Toast Container */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
 
       <div className="max-w-5xl mx-auto">
 
