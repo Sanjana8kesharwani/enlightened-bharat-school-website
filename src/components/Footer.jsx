@@ -31,7 +31,7 @@
 //             </div>
 
 //         </div>
-      
+
 //     </footer>
 
 //   )
@@ -40,29 +40,32 @@
 
 // export default Footer
 
-
-
-
 // Updated code
 
+import logo from "../assets/logo.jpeg";
+import { Link } from "react-router-dom";
 
-
-
-import logo from "../assets/logo.jpeg"
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaInstagram,
+  FaYoutube,
+  FaFacebookF,
+} from "react-icons/fa";
 
 function Footer() {
-
   return (
+    <footer className="relative bg-gradient-to-b from-black via-[#0a0a0a] to-[#111111] border-t border-yellow-500/20 py-20 px-6 overflow-hidden">
+      {/* Glow Effects */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-yellow-500/10 blur-[150px] rounded-full"></div>
 
-    <footer className="bg-black border-t border-white/10 py-20 px-6 overflow-hidden">
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/10 blur-[150px] rounded-full"></div>
 
-      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-
+      <div className="relative max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
         {/* Logo Section */}
         <div>
-
           <div className="flex items-center gap-4">
-
             <img
               src={logo}
               alt="logo"
@@ -70,206 +73,130 @@ function Footer() {
             />
 
             <div>
-
               <h2 className="text-white text-2xl font-bold">
-
                 Enlightened Bharat
-
               </h2>
 
               <p className="text-yellow-400 tracking-[4px] uppercase text-xs mt-1">
-
                 Gurukul
-
               </p>
-
             </div>
-
           </div>
 
           <p className="text-gray-400 leading-8 mt-6">
-
-            Modern Education with Vedic Soul.
-            Building future-ready leaders with values,
-            wisdom and discipline.
-
+            Modern Education with Vedic values. Building future-ready leaders
+            through wisdom, discipline, character and excellence.
           </p>
-
         </div>
 
         {/* Quick Links */}
         <div>
-
           <h3 className="text-white text-2xl font-semibold mb-6">
-
             Quick Links
-
           </h3>
 
-          <ul className="space-y-4 text-gray-400">
+          <ul className="space-y-4">
+            {["Home", "About", "Academics", "Gallery", "Contact"].map(
+              (item) => (
+                <li key={item} className="group cursor-pointer w-fit">
+                  <span className="text-gray-400 group-hover:text-yellow-400 duration-300">
+                    {item}
+                  </span>
 
-            <li className="hover:text-yellow-400 duration-300 cursor-pointer">
-              Home
-            </li>
-
-            <li className="hover:text-yellow-400 duration-300 cursor-pointer">
-              About
-            </li>
-
-            <li className="hover:text-yellow-400 duration-300 cursor-pointer">
-              Academics
-            </li>
-
-            <li className="hover:text-yellow-400 duration-300 cursor-pointer">
-              Gallery
-            </li>
-
-            <li className="hover:text-yellow-400 duration-300 cursor-pointer">
-              Contact
-            </li>
-
+                  <div className="w-0 h-[2px] bg-yellow-400 group-hover:w-full duration-300"></div>
+                </li>
+              ),
+            )}
           </ul>
-
         </div>
 
         {/* Contact */}
         <div>
-
-          <h3 className="text-white text-2xl font-semibold mb-6">
-
-            Contact
-
-          </h3>
+          <h3 className="text-white text-2xl font-semibold mb-6">Contact Us</h3>
 
           <div className="space-y-5 text-gray-400">
+            <a
+              href="https://maps.app.goo.gl/EREyA2k3sLRs2b8d6"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-start gap-3 hover:text-yellow-400 duration-300"
+            >
+              <FaMapMarkerAlt className="text-yellow-400 mt-1" />
 
-            <p>
-                <a href="https://maps.app.goo.gl/EREyA2k3sLRs2b8d6"> Enlightened Bharat Gurukul</a>
-              
+              <span>Enlightened Bharat Gurukul</span>
+            </a>
+
+            <p className="flex items-center gap-3">
+              <FaPhoneAlt className="text-yellow-400" />
+              +91 9876543210
             </p>
 
-            <p>
-              📞 +91 9876543210
+            <p className="flex items-center gap-3">
+              <FaEnvelope className="text-yellow-400" />
+              info@enlightenedbharat.com
             </p>
-
-            <p>
-              ✉️ info@enlightenedbharat.com
-            </p>
-
           </div>
-
         </div>
 
         {/* Social Media */}
         <div>
+          <h3 className="text-white text-2xl font-semibold mb-6">Follow Us</h3>
 
-          <h3 className="text-white text-2xl font-semibold mb-6">
-
-            Follow Us
-
-          </h3>
-
-          <div className="flex gap-5 flex-wrap">
-
-            {/* Instagram */}
+          <div className="flex gap-4">
             <a
               href="https://instagram.com"
               target="_blank"
               rel="noreferrer"
-              className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 duration-300"
+              className="w-14 h-14 rounded-full border border-yellow-400/20 bg-white/5 flex items-center justify-center text-white hover:bg-yellow-400 hover:text-black duration-300"
             >
-
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
-                alt="instagram"
-                className="w-6 h-6"
-              />
-
+              <FaInstagram size={22} />
             </a>
 
-            {/* YouTube */}
             <a
               href="https://youtube.com"
               target="_blank"
               rel="noreferrer"
-              className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 duration-300"
+              className="w-14 h-14 rounded-full border border-yellow-400/20 bg-white/5 flex items-center justify-center text-white hover:bg-yellow-400 hover:text-black duration-300"
             >
-
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
-                alt="youtube"
-                className="w-6 h-6"
-              />
-
+              <FaYoutube size={22} />
             </a>
 
-            {/* Facebook */}
             <a
               href="https://facebook.com"
               target="_blank"
               rel="noreferrer"
-              className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 duration-300"
+              className="w-14 h-14 rounded-full border border-yellow-400/20 bg-white/5 flex items-center justify-center text-white hover:bg-yellow-400 hover:text-black duration-300"
             >
-
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
-                alt="facebook"
-                className="w-6 h-6"
-              />
-
+              <FaFacebookF size={20} />
             </a>
-
-            {/* Email */}
-            <a
-              href="mailto:info@enlightenedbharat.com"
-              className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 duration-300"
-            >
-
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
-                alt="email"
-                className="w-6 h-6"
-              />
-
-            </a>
-
           </div>
-
         </div>
-
       </div>
 
-      {/* Google Map */}
-      <div className="max-w-7xl mx-auto mt-16 rounded-3xl overflow-hidden border border-white/10">
-
-        <iframe
-          src="https://maps.google.com/maps?q=28.228929,79.455620&z=16&output=embed"
-          width="100%"
-          height="350"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="map"
-        ></iframe>
-
-      </div>
-
-      {/* Bottom */}
-      <div className="border-t border-white/10 mt-16 pt-8 text-center">
-
-        <p className="text-gray-500">
-
+      {/* Bottom Footer */}
+      <div className="relative max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p className="text-gray-500 text-center md:text-left">
           © 2026 Enlightened Bharat Gurukul. All Rights Reserved.
-
         </p>
 
+        <div className="flex gap-6 mt-4 md:mt-0">
+          <Link
+            to="/privacy-policy"
+            className="text-gray-500 hover:text-yellow-400 duration-300"
+          >
+            Privacy Policy
+          </Link>
+
+          <Link
+            to="/terms-and-conditions"
+            className="text-gray-500 hover:text-yellow-400 duration-300"
+          >
+            Terms & Conditions
+          </Link>
+        </div>
       </div>
-
     </footer>
-
-  )
-
+  );
 }
 
-export default Footer
+export default Footer;
